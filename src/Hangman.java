@@ -19,7 +19,7 @@ public class Hangman extends ConsoleProgram {
 	
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	
-	public static final int MAX_GUESSES = 8;
+	public static final int MAX_GUESSES = 7;
 
 	// Tracks the number of guesses the player has
 	private int guessCounter = MAX_GUESSES;
