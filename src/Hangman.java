@@ -134,19 +134,19 @@ public class Hangman extends ConsoleProgram {
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
 		//checks to see if the guessed letter is in the word
-		if(word.indexOf(ch) == -1) {
+		if(word.indexOf(ch) == -1 && word.indexOf(ch - 32) == -1) {
 			println("There are no " + ch + "'s in the word");
 			guessCounter--;
 			incorrectLetters = incorrectLetters + ch;
 			canvas.noteIncorrectGuess(incorrectLetters);
 		}
-		if(word.indexOf(ch) != -1) {
+		if(word.indexOf(ch) != -1 || word.indexOf(ch - 32) != -1) {
 			println("The guess is correct.");
 		}
 		//goes through each of the letters in the word and checks if it matches the guessed letter, 
 		//if it's a match, updates the hidden word to reveal the position of the guessed letter
 		for(int i = 0; i < word.length(); i++) {
-			if (ch == word.charAt(i)) {
+			if (ch == word.charAt(i) || ch-32 == word.charAt(i)) {
 				if (i > 0) {
 					hiddenWord = hiddenWord.substring(0, i) + ch + hiddenWord.substring(i + 1);
 				}
