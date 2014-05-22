@@ -84,7 +84,7 @@ public class Hangman extends ConsoleProgram {
 			}
 			if(getChar.length() == 1) break;
 		}
-		ch = getChar.charAt(0);
+		ch = Character.toUpperCase(ch);
 	}
 	
 	private void checkForLoss() {
@@ -134,6 +134,7 @@ public class Hangman extends ConsoleProgram {
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
 		//checks to see if the guessed letter is in the word
+		
 		if(word.indexOf(ch) == -1) {
 			println("There are no " + ch + "'s in the word");
 			guessCounter--;

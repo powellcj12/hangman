@@ -59,21 +59,29 @@ public class HangmanCanvas extends GCanvas {
 		//and draws the next appropriate body part of the hangman
 		switch (incorrectGuesses.length()) {
 			case 1:
-				drawHead();
+				drawHead(); 
+				break;
 			case 2:
 				drawBody();
+				break;
 			case 3:
 				drawLeftArm();
+				break;
 			case 4:
 				drawRightArm();
+				break;
 			case 5:
 				drawLeftLeg();
+				break;
 			case 6:
 				drawRightLeg();
+				break;
 			case 7:
 				drawLeftFoot();
+				break;
 			default:
 				drawRightFoot();
+				break;
 		}
 	}
 	
