@@ -39,8 +39,8 @@ public class HangmanCanvas extends GCanvas {
 		double y = getHeight() - HEAD_RADIUS*2;
 		GLabel unGuessedWord = new GLabel(word, x, y);
 		unGuessedWord.setFont("Halvetica-24");
+		removeAll();
 		add(unGuessedWord);
-		
 	}
 
 /**
