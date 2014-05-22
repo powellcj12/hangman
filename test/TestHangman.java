@@ -146,17 +146,19 @@ public class TestHangman {
 		
 		for(int i = 0; i < wordToGuess.length(); i++) {
 			outputStream.println(guess);
+			outputStream.flush();
 		}
 		
 		outputStream.close();
 		runAutomatically();
 		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+		while(hangman.getGuessCounter() > 0) {
 			hangman.step();
 		}
 		
+		//check here
 		assertEquals("Should have 0 guesses remaining after losing", 0, hangman.getGuessCounter());
-		assertTrue("Hidden word should not be revelaed after losing", 
+		assertTrue("Hidden word should not be revelead after losing", 
 				!(hangman.getHiddenWord().equalsIgnoreCase(wordToGuess)));
 	}
 	
