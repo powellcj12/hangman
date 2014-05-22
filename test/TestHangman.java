@@ -143,23 +143,23 @@ public class TestHangman {
 	@Test
 	public void testLosing() throws FileNotFoundException {
 		char guess = getAnIncorrectGuess();
-		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+
+		for(int i = 0; i < 8; i++) {
 			outputStream.println(guess);
 		}
-		
+
 		outputStream.close();
 		runAutomatically();
-		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+
+		while(hangman.getGuessCounter() > 0) {
 			hangman.step();
 		}
-		
+
 		assertEquals("Should have 0 guesses remaining after losing", 0, hangman.getGuessCounter());
-		assertTrue("Hidden word should not be revelaed after losing", 
+		assertTrue("Hidden word should not be revealed after losing", 
 				!(hangman.getHiddenWord().equalsIgnoreCase(wordToGuess)));
 	}
-	
+
 	@Test
 	public void testWinning() throws FileNotFoundException {
 		for(int i = 0; i < wordToGuess.length(); i++) {
