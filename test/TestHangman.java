@@ -144,14 +144,14 @@ public class TestHangman {
 	public void testLosing() throws FileNotFoundException {
 		char guess = getAnIncorrectGuess();
 		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+		for(int i = 0; i < hangman.MAX_GUESSES; i++) {
 			outputStream.println(guess);
 		}
 		
 		outputStream.close();
 		runAutomatically();
 		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+		for(int i = 0; i < hangman.MAX_GUESSES; i++) {
 			hangman.step();
 		}
 		
