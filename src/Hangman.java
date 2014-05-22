@@ -78,6 +78,7 @@ public class Hangman extends ConsoleProgram {
 	
 	private void getCharGuess() {
 		String getChar = readLine("Your guess: ");
+		getChar = getChar.toUpperCase();
 		while (true) {
 			if(getChar.length() > 1) {
 				getChar = readLine("You can only guess one letter at a time. Try again: ");
