@@ -144,7 +144,7 @@ public class TestHangman {
 	public void testLosing() throws FileNotFoundException {
 		char guess = getAnIncorrectGuess();
 
-		for(int i = 0; i < 8; i++) {
+		for(int i = 0; i < hangman.getGuessCounter(); i++) {
 			outputStream.println(guess);
 		}
 
