@@ -144,19 +144,19 @@ public class TestHangman {
 	public void testLosing() throws FileNotFoundException {
 		char guess = getAnIncorrectGuess();
 		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+		for(int i = 0; i < Hangman.MAX_GUESSES; i++) {
 			outputStream.println(guess);
 		}
 		
 		outputStream.close();
 		runAutomatically();
 		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+		for(int i = 0; i < Hangman.MAX_GUESSES; i++) {
 			hangman.step();
 		}
 		
 		assertEquals("Should have 0 guesses remaining after losing", 0, hangman.getGuessCounter());
-		assertTrue("Hidden word should not be revelaed after losing", 
+		assertTrue("Hidden word should not be revealed after losing", 
 				!(hangman.getHiddenWord().equalsIgnoreCase(wordToGuess)));
 	}
 	

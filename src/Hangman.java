@@ -136,13 +136,23 @@ public class Hangman extends ConsoleProgram {
 		ch=Character.toUpperCase(ch);
 		//checks to see if the guessed letter is in the word
 		if(word.indexOf(ch) == -1) {
-			println("There are no " + ch + "'s in the word");
-			guessCounter--;
-			incorrectLetters = incorrectLetters + ch;
-			canvas.noteIncorrectGuess(incorrectLetters);
+			if(incorrectLetters.indexOf(ch)!=-1||hiddenWord.indexOf(ch)!=-1){
+				println("You've already guessed that letter!");
+			}
+			else{
+				println("There are no " + ch + "'s in the word");
+				guessCounter--;
+				incorrectLetters = incorrectLetters + ch;
+				canvas.noteIncorrectGuess(incorrectLetters);
+			}
 		}
 		if(word.indexOf(ch) != -1) {
-			println("The guess is correct.");
+			if(incorrectLetters.indexOf(ch)!=-1||hiddenWord.indexOf(ch)!=-1){
+				println("You've already guessed that letter!");
+			}
+			else{
+				println("The guess is correct.");
+			}
 		}
 		//goes through each of the letters in the word and checks if it matches the guessed letter, 
 		//if it's a match, updates the hidden word to reveal the position of the guessed letter
