@@ -74,7 +74,7 @@ public class Hangman extends ConsoleProgram {
 			result = result + "-";
 		}
 		return result;
-		}
+	}
 	
 	private void getCharGuess() {
 		String getChar = readLine("Your guess: ").toUpperCase();
