@@ -146,7 +146,7 @@ public class TestHangman {
 		
 		for(int i = 0; i < wordToGuess.length(); i++) {
 			outputStream.println(guess);
-			outputStream.flush();
+			//outputStream.flush();
 		}
 		
 		outputStream.close();
