@@ -65,14 +65,19 @@ public class Hangman extends ConsoleProgram {
     	hangmanWords = new HangmanLexicon("HangmanLexicon.txt");
     	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
     	String pickedWord = hangmanWords.getWord(randomWord);
-    	return pickedWord;
+    	return "BISHOP BLANCHET BRAVES";
+    	//return pickedWord;
     }
 	
     //Shows how many letters there are in the word as part of game setup
 	private String showNumberOfLetters() {
 		String result = "";
 		for(int i = 0; i< word.length(); i++) {
-			result = result + "-";
+			if(word.substring(i,i+1).equals(" ")) {
+				result += " ";
+			} else {
+				result = result + "-";
+			}
 		}
 		return result;
 		}
