@@ -133,6 +133,7 @@ public class Hangman extends ConsoleProgram {
 	
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
+		ch=Character.toUpperCase(ch);
 		//checks to see if the guessed letter is in the word
 		if(word.indexOf(ch) == -1) {
 			println("There are no " + ch + "'s in the word");
