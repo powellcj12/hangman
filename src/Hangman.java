@@ -69,7 +69,7 @@ public class Hangman extends ConsoleProgram {
 //    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
 //    	String pickedWord = hangmanWords.getWord(randomWord);
 //    	return pickedWord;
-    	return "ROBERT FROST";
+    	return "BISHOP BLANCHET BRAVES";
     }
 	
     //Shows how many letters there are in the word as part of game setup

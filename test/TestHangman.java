@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,7 @@ public class TestHangman {
 	private static final String INPUT_FILE = "TestInput.txt";
 	private PrintWriter outputStream;
 	private String wordToGuess;
+	private ArrayList<Character> guesses=new ArrayList<Character>();
 	
 	private void runAutomatically() throws FileNotFoundException {
 		BufferedReader inputStream = new BufferedReader(new FileReader(new File(INPUT_FILE)));
@@ -28,7 +30,7 @@ public class TestHangman {
 		for (char c = 'A'; c <= 'Z'; c++) {
 			if (wordToGuess.indexOf(c) == -1) {
 				guess = c;
-				break;
+				guesses.add(c);
 			}
 		}
 		
@@ -60,8 +62,13 @@ public class TestHangman {
 		assertEquals("Guess counter should start at the max", Hangman.MAX_GUESSES, guessCounter);
 		
 		for (int i = 0; i < hiddenWord.length(); i++) {
-			assertEquals("Each character of the word should be hidden at the start - failed for letter at index " + i, 
-					'-', hiddenWord.charAt(i));
+			if(hiddenWord.charAt(i)==' '){
+				
+			}
+			else{
+			assertEquals("Each character of the word should be hidden at the start - failed for letter at index " + i, //Fails because now to be able to put a multi-word phrase as the answer, the spaces are shown and not hidden so this assert is moot.
+				'-', hiddenWord.charAt(i));
+			}
 		}
 		
 		assertTrue("Incorrect letters should be blank at the start", incorrectLetters.equalsIgnoreCase(""));
@@ -142,10 +149,12 @@ public class TestHangman {
 	
 	@Test
 	public void testLosing() throws FileNotFoundException {
-		char guess = getAnIncorrectGuess();
-		
 		for(int i = 0; i < Hangman.MAX_GUESSES; i++) {
-			outputStream.println(guess);
+			getAnIncorrectGuess();
+			for(char guess1:guesses){
+				outputStream.println(guess1);
+				
+			}
 		}
 		
 		outputStream.close();
@@ -155,8 +164,8 @@ public class TestHangman {
 			hangman.step();
 		}
 		
-		assertEquals("Should have 0 guesses remaining after losing", 0, hangman.getGuessCounter());
-		assertTrue("Hidden word should not be revealed after losing", 
+		assertEquals("Should have 0 guesses remaining after losing", 0, hangman.getGuessCounter()); 
+		assertTrue("Hidden word should not be revealed after losing", 	                             
 				!(hangman.getHiddenWord().equalsIgnoreCase(wordToGuess)));
 	}
 	
