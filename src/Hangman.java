@@ -46,6 +46,8 @@ public class Hangman extends ConsoleProgram {
 	//This string keeps track of all the incorrect guessed letters
 	private String incorrectLetters = "";
 	
+	private boolean preStart = true;
+	
     /*Set up the game by displaying the welcome message, 
      *how many letters there are in the word, 
      *and how many guesses the user has
@@ -53,6 +55,8 @@ public class Hangman extends ConsoleProgram {
     public void setUpGame() {
     	canvas.reset();
     	hiddenWord = showNumberOfLetters();
+    	letterCheck();
+    	preStart=false;
     	canvas.displayWord(hiddenWord);
     	println("Welcome to Hangman!");
     	println("The word now looks like this: " + hiddenWord);
@@ -61,17 +65,23 @@ public class Hangman extends ConsoleProgram {
 	
     //Generates a random word selected from the HangmanLexicon
     private String pickWord() {
-    	hangmanWords = new HangmanLexicon("HangmanLexicon.txt");
-    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
-    	String pickedWord = hangmanWords.getWord(randomWord);
-    	return pickedWord;
+//    	hangmanWords = new HangmanLexicon("HangmanLexicon.txt");
+//    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
+//    	String pickedWord = hangmanWords.getWord(randomWord);
+//    	return pickedWord;
+    	return "BISHOP BLANCHET BRAVES";
     }
 	
     //Shows how many letters there are in the word as part of game setup
 	private String showNumberOfLetters() {
 		String result = "";
 		for(int i = 0; i< word.length(); i++) {
-			result = result + "-";
+			if(word.charAt(i)== ' '){
+				result= result + " ";
+			}
+			else{
+				result = result + "-";
+			}     
 		}
 		return result;
 		}
@@ -116,6 +126,7 @@ public class Hangman extends ConsoleProgram {
 			return;
 		}
 		
+		
 		if(guessCounter > 0) {
 			getCharGuess();
 			letterCheck();
@@ -133,15 +144,29 @@ public class Hangman extends ConsoleProgram {
 	
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
+		if(preStart){
+			ch= ' ';
+		}
+		ch=Character.toUpperCase(ch);
 		//checks to see if the guessed letter is in the word
 		if(word.indexOf(ch) == -1) {
-			println("There are no " + ch + "'s in the word");
-			guessCounter--;
-			incorrectLetters = incorrectLetters + ch;
-			canvas.noteIncorrectGuess(incorrectLetters);
+			if(incorrectLetters.indexOf(ch)!=-1||hiddenWord.indexOf(ch)!=-1){
+				println("You've already guessed that letter!");
+			}
+			else{
+				println("There are no " + ch + "'s in the word");
+				guessCounter--;
+				incorrectLetters = incorrectLetters + ch;
+				canvas.noteIncorrectGuess(incorrectLetters);
+			}
 		}
 		if(word.indexOf(ch) != -1) {
-			println("The guess is correct.");
+			if(incorrectLetters.indexOf(ch)!=-1||hiddenWord.indexOf(ch)!=-1){
+				println("You've already guessed that letter!");
+			}
+			else{
+				println("The guess is correct.");
+			}
 		}
 		//goes through each of the letters in the word and checks if it matches the guessed letter, 
 		//if it's a match, updates the hidden word to reveal the position of the guessed letter
