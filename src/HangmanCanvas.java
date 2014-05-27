@@ -50,6 +50,7 @@ public class HangmanCanvas extends GCanvas {
  * guesses that appears at the bottom of the window.
  */
 	public void noteIncorrectGuess(String incorrectGuesses) {
+		System.out.println(incorrectGuesses);
 		//adds the label with the incorrect letters
 		double x = getWidth()/4;
 		double y = getHeight() - HEAD_RADIUS;
