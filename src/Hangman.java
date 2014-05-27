@@ -1,15 +1,18 @@
 /*
  * File: Hangman.java
+
  * ------------------
  * This program will eventually play the Hangman game from
  * Assignment #4.
  */
 
 import acm.graphics.*;
+
 import acm.program.*;
 import acm.util.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Hangman extends ConsoleProgram {
 
@@ -45,6 +48,9 @@ public class Hangman extends ConsoleProgram {
 	
 	//This string keeps track of all the incorrect guessed letters
 	private String incorrectLetters = "";
+	
+	//Keeps people from reguessing letters
+	private ArrayList<Character> guessedLetters = new ArrayList<Character>();
 	
     /*Set up the game by displaying the welcome message, 
      *how many letters there are in the word, 
@@ -133,15 +139,24 @@ public class Hangman extends ConsoleProgram {
 	
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
+		boolean guessed = false;
 		//checks to see if the guessed letter is in the word
-		if(word.indexOf(ch) == -1 && word.indexOf(ch - 32) == -1) {
+		for(char x: guessedLetters){
+			if(x == ch) guessed = true;
+		}
+		if((word.indexOf(ch) == -1 && word.indexOf(ch - 32) == -1) && !guessed) {
 			println("There are no " + ch + "'s in the word");
 			guessCounter--;
 			incorrectLetters = incorrectLetters + ch;
 			canvas.noteIncorrectGuess(incorrectLetters);
+			guessedLetters.add(ch);
 		}
-		if(word.indexOf(ch) != -1 || word.indexOf(ch - 32) != -1) {
+		if((word.indexOf(ch) != -1 || word.indexOf(ch - 32) != -1) && !guessed) {
 			println("The guess is correct.");
+			guessedLetters.add(ch);
+		}
+		if(guessed){
+			println("Already guessed this");
 		}
 		//goes through each of the letters in the word and checks if it matches the guessed letter, 
 		//if it's a match, updates the hidden word to reveal the position of the guessed letter
