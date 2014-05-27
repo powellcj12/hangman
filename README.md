@@ -1,4 +1,4 @@
-hangman
+Hangman
 =======
 
 When it plays Hangman, the computer first selects a secret word at random from a list built into the program. The program then prints out a row of dashes, one for each letter in the secret word, and asks the user to guess a letter. If the user guesses a letter that is in the word, the word is redisplayed with all instances of that letter shown in the correct positions, along with any letters correctly guessed on previous turns. If the letter does not appear in the word, the user is charged with an incorrect guess. The user keeps guessing letters until either (1) the user has correctly guessed all the letters in the word or (2) the user has made eight incorrect guesses.
@@ -19,9 +19,8 @@ New Features
 
 There are a number of new features to be implemented:
 
-1. Ensure that if a user enters a letter that was already guessed, they are notified of this and it doesn't count as another inncorrect guess.
-2. Expand the program to allow for multi-word phrases (like "Bishop Blanchet Braves") instead of single words to be guessed
-3. Instead of having the body parts and letters merely appear on the screen, you could have them move in from offscreen for a type of animation effect.
+1. Expand the program to allow for multi-word phrases (like "Bishop Blanchet Braves") instead of single words to be guessed
+2. Instead of having the body parts and letters merely appear on the screen, you could have them move in from offscreen for a type of animation effect.
 
 Testing
 -------
