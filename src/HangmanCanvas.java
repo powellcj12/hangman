@@ -8,7 +8,7 @@
 import acm.graphics.*;
 
 public class HangmanCanvas extends GCanvas {
-
+	private GLabel unGuessedWord;
 /** Resets the display so that only the scaffold appears */
 	public void reset() {
 		drawScaffold();
@@ -37,10 +37,12 @@ public class HangmanCanvas extends GCanvas {
 		//adds the label with the correctly guessed letters
 		double x = getWidth()/4;
 		double y = getHeight() - HEAD_RADIUS*2;
-		GLabel unGuessedWord = new GLabel(word, x, y);
+		if(unGuessedWord != null){
+			remove(unGuessedWord);
+		}
+		unGuessedWord = new GLabel(word, x, y);
 		unGuessedWord.setFont("Halvetica-24");
 		add(unGuessedWord);
-		
 	}
 
 /**
