@@ -14,7 +14,7 @@ import java.util.*;
 
 public class Hangman extends ConsoleProgram {
 
-	private HangmanLexicon hangmanWords;
+	private HangmanLexicon hangmanWords=new HangmanLexicon("HangmanLexicon.txt");  //needed to be declared at the beginning
 	
 	private HangmanCanvas canvas;
 	
@@ -63,10 +63,10 @@ public class Hangman extends ConsoleProgram {
     //Generates a random word selected from the HangmanLexicon
     private String pickWord() {
     	hangmanWords = new HangmanLexicon("HangmanLexicon.txt");
-    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
+    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount()));
     	String pickedWord = hangmanWords.getWord(randomWord);
-    	return "BISHOP BLANCHET BRAVES";
-    	//return pickedWord;
+    	//return "BISHOP BLANCHET BRAVES";
+    	return pickedWord;
     }
 	
     //Shows how many letters there are in the word as part of game setup
