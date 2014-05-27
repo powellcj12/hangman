@@ -50,7 +50,7 @@ public class TestHangmanCanvas {
 		assertEquals("Displaying a word should add a label to the top of the canvas", GLabel.class, element.getClass());
 		
 		canvas.displayWord("ANOTHER_TEST");
-		assertEquals("Displaying a word after the first shouldn't change the element count", numElementsAfter + 1, canvas.getElementCount());
+		assertEquals("Displaying a word after the first shouldn't change the element count", numElementsAfter, canvas.getElementCount());
 
 		element = canvas.getElement(canvas.getElementCount() - 1);
 		assertEquals("Displaying a word after the first should add a label to the top of the canvas", GLabel.class, element.getClass());
