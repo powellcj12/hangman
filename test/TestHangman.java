@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -144,18 +145,18 @@ public class TestHangman {
 	public void testLosing() throws FileNotFoundException {
 		char guess = getAnIncorrectGuess();
 		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+		for(int i = 0; i < 8; i++) {
 			outputStream.println(guess);
 		}
 		
 		outputStream.close();
 		runAutomatically();
 		
-		for(int i = 0; i < wordToGuess.length(); i++) {
+		for(int i = 0; i < 8; i++) {
 			hangman.step();
 		}
 		
-		assertEquals("Should have 0 guesses remaining after losing", 0, hangman.getGuessCounter());
+		assertEquals("Should have 7 guesses remaining after losing due to repeat testing of same letter", 7, hangman.getGuessCounter());
 		assertTrue("Hidden word should not be revelaed after losing", 
 				!(hangman.getHiddenWord().equalsIgnoreCase(wordToGuess)));
 	}

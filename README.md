@@ -25,7 +25,7 @@ New Features
 
 There are a number of new features to be implemented:
 
-1. Ensure that if a user enters a letter that was already guessed, they are notified of this and it doesn't count as another inncorrect guess.
+done     1. Ensure that if a user enters a letter that was already guessed, they are notified of this and it doesn't count as another inncorrect guess.
 2. Expand the program to allow for multi-word phrases (like "Bishop Blanchet Braves") instead of single words to be guessed
 3. Instead of having the body parts and letters merely appear on the screen, you could have them move in from offscreen for a type of animation effect.
 
