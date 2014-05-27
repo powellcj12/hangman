@@ -62,7 +62,7 @@ public class Hangman extends ConsoleProgram {
     //Generates a random word selected from the HangmanLexicon
     private String pickWord() {
     	hangmanWords = new HangmanLexicon("HangmanLexicon.txt");
-    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
+    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount() - 1)); 
     	String pickedWord = hangmanWords.getWord(randomWord);
     	return pickedWord;
     }
@@ -78,12 +78,12 @@ public class Hangman extends ConsoleProgram {
 	
 	private void getCharGuess() {
 		String getChar = readLine("Your guess: ");
-		while (true) {
+		/*while (true) {
 			if(getChar.length() > 1) {
 				getChar = readLine("You can only guess one letter at a time. Try again: ");
 			}
 			if(getChar.length() == 1) break;
-		}
+		}*/
 		ch = getChar.charAt(0);
 	}
 	
@@ -133,6 +133,13 @@ public class Hangman extends ConsoleProgram {
 	
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
+		//check if the guessed letter has already been tried
+		for(int i = 0; i < incorrectLetters.length(); i++){
+			if(incorrectLetters.charAt(i) == ch || incorrectLetters.toLowerCase().charAt(i) == ch){
+				println(ch + " has already been guessed");
+				return;
+			}
+		}
 		//checks to see if the guessed letter is in the word
 		if(word.indexOf(ch) == -1 && word.toLowerCase().indexOf(ch) == -1){
 			println("There are no " + ch + "'s in the word");
