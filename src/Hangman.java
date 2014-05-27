@@ -40,6 +40,8 @@ public class Hangman extends ConsoleProgram {
 	//This is the secret word
 	private String word = pickWord();
 	
+	private String guesses = "";
+	
 	//This is the latest character entered by the user
 	private char ch;
 	
@@ -134,14 +136,18 @@ public class Hangman extends ConsoleProgram {
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
 		//checks to see if the guessed letter is in the word
-		if(word.indexOf(ch) == -1) {
+		if(word.indexOf(ch) == -1 && guesses.indexOf(ch) == -1) {
 			println("There are no " + ch + "'s in the word");
 			guessCounter--;
 			incorrectLetters = incorrectLetters + ch;
 			canvas.noteIncorrectGuess(incorrectLetters);
+			guesses = guesses + ch;
 		}
 		if(word.indexOf(ch) != -1) {
 			println("The guess is correct.");
+		}
+		if(word.indexOf(ch) == -1 && guesses.indexOf(ch) != -1) {
+			println("This letter is incorrect but has been guessed.");
 		}
 		//goes through each of the letters in the word and checks if it matches the guessed letter, 
 		//if it's a match, updates the hidden word to reveal the position of the guessed letter
