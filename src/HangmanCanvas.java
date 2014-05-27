@@ -37,6 +37,11 @@ public class HangmanCanvas extends GCanvas {
 		//adds the label with the correctly guessed letters
 		double x = getWidth()/4;
 		double y = getHeight() - HEAD_RADIUS*2;
+		
+		try{
+			this.remove(this.getElementAt(x, y));
+		} catch (NullPointerException e){}
+		
 		GLabel unGuessedWord = new GLabel(word, x, y);
 		unGuessedWord.setFont("Halvetica-24");
 		add(unGuessedWord);
