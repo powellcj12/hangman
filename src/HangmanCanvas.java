@@ -37,6 +37,9 @@ public class HangmanCanvas extends GCanvas {
 		//adds the label with the correctly guessed letters
 		double x = getWidth()/4;
 		double y = getHeight() - HEAD_RADIUS*2;
+		if(this.getElementCount()>0){
+			this.remove(this.getElementAt(x, y));
+		}
 		GLabel unGuessedWord = new GLabel(word, x, y);
 		unGuessedWord.setFont("Halvetica-24");
 		add(unGuessedWord);
@@ -60,20 +63,28 @@ public class HangmanCanvas extends GCanvas {
 		switch (incorrectGuesses.length()) {
 			case 1:
 				drawHead();
+				break;
 			case 2:
 				drawBody();
+				break;
 			case 3:
 				drawLeftArm();
+				break;
 			case 4:
 				drawRightArm();
+				break;
 			case 5:
 				drawLeftLeg();
+				break;
 			case 6:
 				drawRightLeg();
+				break;
 			case 7:
 				drawLeftFoot();
+				break;
 			default:
 				drawRightFoot();
+				break;
 		}
 	}
 	
