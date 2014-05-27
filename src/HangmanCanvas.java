@@ -33,14 +33,17 @@ public class HangmanCanvas extends GCanvas {
  * state of the game.  The argument string shows what letters have
  * been guessed so far; unguessed letters are indicated by hyphens.
  */
+	GLabel pastUnGuessedWord = new GLabel("h", 1, 2);
+	
 	public void displayWord(String word) {
 		//adds the label with the correctly guessed letters
 		double x = getWidth()/4;
 		double y = getHeight() - HEAD_RADIUS*2;
 		GLabel unGuessedWord = new GLabel(word, x, y);
 		unGuessedWord.setFont("Halvetica-24");
-		removeAll();
-		add(unGuessedWord);
+		remove(pastUnGuessedWord);
+		pastUnGuessedWord = unGuessedWord;
+		add(pastUnGuessedWord);
 	}
 
 /**
@@ -58,29 +61,21 @@ public class HangmanCanvas extends GCanvas {
 		//checks how many incorrect guessed letters there are 
 		//and draws the next appropriate body part of the hangman
 		switch (incorrectGuesses.length()) {
-			case 7:
-				drawLeftFoot();
+			case 1: drawHead();	
 				break;
-			case 6:
-				drawRightLeg();
+			case 2: drawBody();
 				break;
-			case 5:
-				drawLeftLeg();
+			case 3: drawLeftArm();
 				break;
-			case 4:
-				drawRightArm();
+			case 4: drawRightArm();
 				break;
-			case 3:
-				drawLeftArm();
+			case 5: drawLeftLeg();
 				break;
-			case 2:
-				drawBody();
+			case 6: drawRightLeg();
 				break;
-			case 1:
-				drawHead();
+			case 7: drawLeftFoot();
 				break;
-			default:
-				drawRightFoot();
+			default: drawRightFoot();
 				break;
 		}
 	}
