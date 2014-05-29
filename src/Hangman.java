@@ -68,8 +68,8 @@ public class Hangman extends ConsoleProgram {
     //Generates a random word selected from the HangmanLexicon
     private String pickWord() {
     	hangmanWords = new HangmanLexicon("HangmanLexicon.txt");
-    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
-    	String pickedWord = hangmanWords.getWord(randomWord);
+    	int randomWord = rgen.nextInt(1, (hangmanWords.getWordCount())); 
+    	String pickedWord = hangmanWords.getWord(randomWord-1);
     	return pickedWord;
     }
 	

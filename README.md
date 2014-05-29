@@ -18,7 +18,7 @@ done     1. If the user inputs a lower-case letter, the program counts it as an 
 done     2. Occasionally, the test for the failure condition (```testFailure```) fails when run. It doesn't always fail.
 done     3. When the user makes an incorrect guess, the entire hangman diagram is drawn on screen. The game continues to run as expected, but the graphical display is inconsistent with the game state.
 done     4. Two of the tests in ```TestHangmanCanvas``` are failing, specifically ```testNoteIncorrectGuess``` and ```testDisplayWord```.
-5. There's an inconsistent, rare crash when starting the game. The stack trace is included in bug #5 on GitHub.
+done     5. There's an inconsistent, rare crash when starting the game. The stack trace is included in bug #5 on GitHub.
 
 New Features
 ------------
