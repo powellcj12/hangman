@@ -8,6 +8,9 @@
 import acm.graphics.*;
 
 public class HangmanCanvas extends GCanvas {
+	
+	GLabel lastword = null;
+	GLabel lastletter = null;
 
 /** Resets the display so that only the scaffold appears */
 	public void reset() {
@@ -35,11 +38,15 @@ public class HangmanCanvas extends GCanvas {
  */
 	public void displayWord(String word) {
 		//adds the label with the correctly guessed letters
+		if(!(lastword==null))
+		remove(lastword);
 		double x = getWidth()/4;
 		double y = getHeight() - HEAD_RADIUS*2;
 		GLabel unGuessedWord = new GLabel(word, x, y);
+		lastword = unGuessedWord;
 		unGuessedWord.setFont("Halvetica-24");
 		add(unGuessedWord);
+		
 		
 	}
 
@@ -54,24 +61,34 @@ public class HangmanCanvas extends GCanvas {
 		double x = getWidth()/4;
 		double y = getHeight() - HEAD_RADIUS;
 		GLabel incorrectLetters = new GLabel(incorrectGuesses, x, y);
+		if(!(lastletter == null))
+		remove(lastletter);
+		lastletter = incorrectLetters;
 		add(incorrectLetters);
 		//checks how many incorrect guessed letters there are 
 		//and draws the next appropriate body part of the hangman
 		switch (incorrectGuesses.length()) {
 			case 1:
 				drawHead();
+				break;
 			case 2:
 				drawBody();
+				break;
 			case 3:
 				drawLeftArm();
+				break;
 			case 4:
 				drawRightArm();
+				break;
 			case 5:
 				drawLeftLeg();
+				break;
 			case 6:
 				drawRightLeg();
+				break;
 			case 7:
 				drawLeftFoot();
+				break;
 			default:
 				drawRightFoot();
 		}

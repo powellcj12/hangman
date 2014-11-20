@@ -60,7 +60,17 @@ public class TestHangmanCanvas {
 	public void testNoteIncorrectGuess() {
 		int numElementsBefore = canvas.getElementCount();
 		canvas.noteIncorrectGuess("INCORRECT_GUESS");
+		
+		
 		int numElementsAfter = canvas.getElementCount();
-		assertEquals("Guessing incorrectly should add 1 element to the canvas", numElementsBefore + 1, numElementsAfter);
+		assertEquals( numElementsBefore + 2 , numElementsAfter);
+		
+		numElementsBefore = canvas.getElementCount();
+		canvas.noteIncorrectGuess("INCORRECT_GUESS");
+		numElementsAfter = canvas.getElementCount();
+		assertEquals( numElementsBefore + 1 , numElementsAfter);
+		
+		
+		
 	}
 }
