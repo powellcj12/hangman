@@ -136,11 +136,16 @@ public class Hangman extends ConsoleProgram {
 		//checks to see if the guessed letter is in the word
 		String wordcheck = word.toUpperCase();
 		char charcheck = Character.toUpperCase(ch);
-		if(wordcheck.indexOf(charcheck) == -1) {
+		if(wordcheck.indexOf(charcheck) == -1 ) {
+			if(incorrectLetters.toUpperCase().indexOf(charcheck) != -1 ){
+				println("You already guessed this letter!");
+				
+			}else{
 			println("There are no " + ch + "'s in the word");
 			guessCounter--;
 			incorrectLetters = incorrectLetters + ch;
 			canvas.noteIncorrectGuess(incorrectLetters);
+			}
 		}
 		if(wordcheck.indexOf(charcheck) != -1) {
 			println("The guess is correct.");
