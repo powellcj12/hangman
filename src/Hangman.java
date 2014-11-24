@@ -62,7 +62,7 @@ public class Hangman extends ConsoleProgram {
     //Generates a random word selected from the HangmanLexicon
     private String pickWord() {
     	hangmanWords = new HangmanLexicon("HangmanLexicon.txt");
-    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount())); 
+    	int randomWord = rgen.nextInt(0, (hangmanWords.getWordCount()-1)); 
     	String pickedWord = hangmanWords.getWord(randomWord);
     	return pickedWord;
     }
@@ -134,24 +134,31 @@ public class Hangman extends ConsoleProgram {
 	//updates the hiddenWord if the character entered is correct 
 	private void letterCheck() {
 		//checks to see if the guessed letter is in the word
-		if(word.indexOf(ch) == -1) {
+		String wordcheck = word.toUpperCase();
+		char charcheck = Character.toUpperCase(ch);
+		if(wordcheck.indexOf(charcheck) == -1 ) {
+			if(incorrectLetters.toUpperCase().indexOf(charcheck) != -1 ){
+				println("You already guessed this letter!");
+				
+			}else{
 			println("There are no " + ch + "'s in the word");
 			guessCounter--;
 			incorrectLetters = incorrectLetters + ch;
 			canvas.noteIncorrectGuess(incorrectLetters);
+			}
 		}
-		if(word.indexOf(ch) != -1) {
+		if(wordcheck.indexOf(charcheck) != -1) {
 			println("The guess is correct.");
 		}
 		//goes through each of the letters in the word and checks if it matches the guessed letter, 
 		//if it's a match, updates the hidden word to reveal the position of the guessed letter
-		for(int i = 0; i < word.length(); i++) {
-			if (ch == word.charAt(i)) {
+		for(int i = 0; i < wordcheck.length(); i++) {
+			if (charcheck == wordcheck.charAt(i)) {
 				if (i > 0) {
-					hiddenWord = hiddenWord.substring(0, i) + ch + hiddenWord.substring(i + 1);
+					hiddenWord = hiddenWord.substring(0, i) + charcheck + hiddenWord.substring(i + 1);
 				}
 				if(i == 0) {
-					hiddenWord = ch + hiddenWord.substring(1);
+					hiddenWord = charcheck + hiddenWord.substring(1);
 				}
 				canvas.displayWord(hiddenWord);
 			}
