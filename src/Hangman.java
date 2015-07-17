@@ -22,7 +22,7 @@ public class Hangman extends ConsoleProgram {
 	public static final int MAX_GUESSES = 8;
 
 	// Tracks the number of guesses the player has
-	private int guessCounter = MAX_GUESSES;
+	private int guessCounter = MAX_GUESSES + 1;
 	
 	private boolean automated = false;
 	
